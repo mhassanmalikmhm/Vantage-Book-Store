@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Membership | Vantage</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav><div class="logo">VANTAGE</div></nav>
+
+    <div class="container-small" id="login-box">
+        <h2 style="text-align:center; letter-spacing:4px;">LOGIN</h2>
+        <input type="email" placeholder="EMAIL">
+        <input type="password" placeholder="PASSWORD">
+        <button class="btn-main">SIGN IN</button>
+        <p style="text-align:center; margin-top:15px; font-size:0.8rem;">
+            New to Vantage? <span onclick="toggleAuth()" style="color:var(--accent); cursor:pointer;">Create Account</span>
+        </p>
+    </div>
+
+    <div class="container-small hidden" id="register-box">
+        <h2 style="text-align:center; letter-spacing:4px;">REGISTER</h2>
+        <input type="text" placeholder="FULL NAME">
+        <input type="email" placeholder="EMAIL">
+        <input type="password" placeholder="PASSWORD">
+        <button class="btn-main">JOIN NOW</button>
+        <p style="text-align:center; margin-top:15px; font-size:0.8rem;">
+            Have an account? <span onclick="toggleAuth()" style="color:var(--accent); cursor:pointer;">Login here</span>
+        </p>
+    </div>
+
+    <script>
+        function toggleAuth() {
+            document.getElementById('login-box').classList.toggle('hidden');
+            document.getElementById('register-box').classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>

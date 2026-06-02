@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Book Details</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .product-flex { display: flex; gap: 50px; padding: 5rem 6%; align-items: center; }
+        .product-img { flex: 1; max-width: 400px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
+        .product-details { flex: 1; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">VANTAGE</div>
+        <a href="index.html" style="color:white; text-decoration:none;">← Back to Catalog</a>
+    </nav>
+
+    <div class="product-flex" id="product-detail">
+        </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Load Details
+        const bookId = localStorage.getItem('selectedBook');
+        const book = books.find(b => b.id == bookId);
+        if(book) {
+            document.getElementById('product-detail').innerHTML = `
+                <img src="${book.img}" class="product-img">
+                <div class="product-details">
+                    <h1 style="font-size: 3rem;">${book.title}</h1>
+                    <p style="color: var(--accent); font-size: 1.5rem; margin: 10px 0;">$${book.price}</p>
+                    <p style="color: var(--muted); margin-bottom: 30px;">This is a premium edition of ${book.title}. Includes high-quality printing and exclusive cover art.</p>
+                    <button class="btn-main" onclick="addToCart(${book.id})">Add to Cart</button>
+                    <button class="btn-main" style="background:transparent; border: 1px solid var(--accent); color:var(--accent);" onclick="window.location.href='checkout.html'">Buy Now</button>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

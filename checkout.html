@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Secure Checkout | Vantage</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav><div class="logo">VANTAGE</div></nav>
+
+    <div class="container-small" style="max-width: 600px; border: 1px solid #222;">
+        <h2 style="margin-bottom: 30px; letter-spacing: 2px;">SHIPPING & PAYMENT</h2>
+        
+        <label style="font-size: 10px; color: var(--muted);">SHIPPING ADDRESS</label>
+        <input type="text" placeholder="FULL NAME">
+        <input type="text" placeholder="STREET ADDRESS, APARTMENT, SUITE">
+        <div style="display:flex; gap:10px;">
+            <input type="text" placeholder="CITY">
+            <input type="text" placeholder="POSTAL CODE">
+        </div>
+
+        <label style="font-size: 10px; color: var(--muted); margin-top: 20px; display: block;">PAYMENT METHOD</label>
+        <div style="background: #1a1a1a; padding: 15px; border: 1px solid #333; margin-top: 10px;">
+            <input type="text" placeholder="CARD NUMBER" style="background:transparent; border:none; border-bottom: 1px solid #333;">
+            <div style="display:flex; gap:10px;">
+                <input type="text" placeholder="MM/YY" style="background:transparent; border:none; border-bottom: 1px solid #333;">
+                <input type="text" placeholder="CVC" style="background:transparent; border:none; border-bottom: 1px solid #333;">
+            </div>
+        </div>
+
+        <button class="btn-main" onclick="window.location.href='success.html'" style="margin-top: 30px;">COMPLETE ORDER</button>
+    </div>
+</body>
+</html>

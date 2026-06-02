@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Cart | Vantage</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">VANTAGE</div>
+        <div class="nav-links">
+            <a href="index.html">CONTINUE SHOPPING</a>
+            <a href="auth.html">LOGIN / REGISTER</a>
+        </div>
+    </nav>
+
+    <div class="container-small" style="max-width: 900px; border: 1px solid #222;">
+        <h2 style="margin-bottom: 30px; letter-spacing: 4px; text-align: center;">YOUR SHOPPING CART</h2>
+        
+        <div id="cart-display-area">
+            </div>
+
+        <div id="cart-footer" class="hidden" style="margin-top: 40px; border-top: 1px solid #333; padding-top: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3 style="font-size: 1.5rem;">Total Amount:</h3>
+                <h3 style="color: var(--accent); font-size: 1.5rem;">$<span id="cart-total-price">0.00</span></h3>
+            </div>
+            <button class="btn-main" onclick="window.location.href='checkout.html'">PROCEED TO SECURE CHECKOUT</button>
+        </div>
+        
+        <div id="empty-msg" style="text-align: center; padding: 50px 0;">
+            <p style="color: var(--muted);">Your cart is currently empty.</p>
+            <a href="index.html" style="color: var(--accent); text-decoration: none; font-size: 0.8rem; display: block; margin-top: 10px;">Browse our Collection</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Specific logic to render cart on this page
+        window.onload = function() {
+            displayCartItems();
+        };
+
+        function displayCartItems() {
+            const container = document.getElementById('cart-display-area');
+            const footer = document.getElementById('cart-footer');
+            const emptyMsg = document.getElementById('empty-msg');
+            const totalDisplay = document.getElementById('cart-total-price');
+            
+            let cart = JSON.parse(localStorage.getItem('vantage_cart')) || [];
+            
+            if (cart.length > 0) {
+                container.innerHTML = "";
+                footer.classList.remove('hidden');
+                emptyMsg.classList.add('hidden');
+                
+                let total = 0;
+                cart.forEach((item, index) => {
+                    total += parseFloat(item.price);
+                    container.innerHTML += `
+                        <div style="display: flex; align-items: center; justify-content: space-between; background: #111; padding: 20px; margin-bottom: 15px; border-radius: 5px;">
+                            <div style="display: flex; align-items: center;">
+                                <img src="${item.img}" style="width: 70px; height: 100px; object-fit: cover; border-radius: 4px; margin-right: 20px;">
+                                <div>
+                                    <h4 style="margin-bottom: 5px;">${item.title}</h4>
+                                    <p style="color: var(--accent);">$${item.price}</p>
+                                </div>
+                            </div>
+                            <button onclick="removeItem(${index})" style="background: none; border: 1px solid #444; color: #ff4d4d; padding: 5px 15px; cursor: pointer; border-radius: 3px; font-size: 0.7rem;">REMOVE</button>
+                        </div>
+                    `;
+                });
+                totalDisplay.innerText = total.toFixed(2);
+            } else {
+                container.innerHTML = "";
+                footer.classList.add('hidden');
+                emptyMsg.classList.remove('hidden');
+            }
+        }
+
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem('vantage_cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('vantage_cart', JSON.stringify(cart));
+            displayCartItems(); // Refresh the list
+            if(typeof updateCart === 'function') updateCart(); // Update nav count
+        }
+    </script>
+</body>
+</html>
